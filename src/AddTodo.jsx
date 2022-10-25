@@ -31,7 +31,7 @@ function AddTodo({ addTodo }) {
     <div className="p-1">
       {click ? (
         <div className="w-32 h-8 my-4">
-          <Button onClick={handleButtonClick} data="Add Todo" />{" "}
+          <Button onClick={handleButtonClick} data="Add Todo" />
         </div>
       ) : (
         <form onSubmit={submitForm} className="space-y-4">

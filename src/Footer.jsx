@@ -1,11 +1,11 @@
 import React from "react";
 import { FaWhatsappSquare } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
-import { Link } from "react-router-dom";
 import Heading from "./Heading";
 import Input from "./Input";
 
 function Footer() {
+  const handleChange = () => {};
   return (
     <div className=" text-rose-600 py-3 justify-center bg-black">
       <Heading>
@@ -18,7 +18,7 @@ function Footer() {
             <FaWhatsappSquare />
           </div>
           <div className="h-10 w-40">
-            <Input value="7017560413" />
+            <Input value="7017560413" onChange={handleChange} />
           </div>
         </div>
         <div className="flex items-center space-x-4">
@@ -26,7 +26,7 @@ function Footer() {
             <SiGmail />
           </div>
           <div className="h-10 w-56">
-            <Input value="tgmcodeyogi@gmail.com" />
+            <Input value="tgmcodeyogi@gmail.com" onChange={handleChange} />
           </div>
         </div>
       </div>
