@@ -13,12 +13,8 @@ function Body({ name }) {
         <Heading>Here are the list of the provided functions</Heading>
         <Link to="/todo">To Do App</Link>
         <Link to="/patterns">Various Patterns</Link>
-        {/* <Link to="/todo">To Do App</Link>
-          <Link to="/todo">To Do App</Link>
-          <Link to="/todo">To Do App</Link>
-          <Link to="/todo">To Do App</Link>
-          <Link to="/todo">To Do App</Link>
-          <Link to="/todo">To Do App</Link> */}
+        <Link to="/onscreencalculator">On Screen Calculator</Link>
+        {/* <Link to="/calculator">Calculator</Link> */}
       </div>
     </div>
   );
