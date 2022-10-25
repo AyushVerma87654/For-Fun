@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Body from "./Body";
+import CalculatePattern from "./CalculatePattern";
 import NumberPattern from "./NumberPattern";
 import Pattern from "./Pattern";
 import StarPattern from "./StarPattern";
@@ -16,6 +17,7 @@ function AllRoutes() {
         <Route path="/patterns" element={<Pattern />} />
         <Route path="/numberpattern" element={<NumberPattern />} />
         <Route path="/starpattern" element={<StarPattern />} />
+        <Route path="/calculatepattern" element={<CalculatePattern />} />
         <Route index element={<User />} />
       </Routes>
     </div>
