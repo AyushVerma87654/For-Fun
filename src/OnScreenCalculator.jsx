@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CalculatorButton from "./CalculatorButton";
+import CalculatorTotal from "./CalculatorTotal";
 import Input from "./Input";
 
 function OnScreenCalculator() {
@@ -9,50 +10,98 @@ function OnScreenCalculator() {
   const [operator, setOperator] = useState([]);
   const handleInputChange = () => {};
   const handleButtonClick = (data) => {
-    const newData = show + data;
-    setShow(newData);
+    if (data == "C") {
+      setShow("");
+    } else {
+      const newData = show + data;
+      setShow(newData);
+    }
   };
+  const [token, setToken] = useState(false);
+
+  let i;
+
   useEffect(() => {
-    let i,
-      numb = "";
     for (i = 0; i < show.length; i++) {
-      if (
-        show[i] == 1 ||
-        show[i] == 2 ||
-        show[i] == 3 ||
-        show[i] == 4 ||
-        show[i] == 5 ||
-        show[i] == 6 ||
-        show[i] == 7 ||
-        show[i] == 8 ||
-        show[i] == 9 ||
-        show[i] == 0 ||
-        show[i] == "."
-      ) {
-        console.log(show[i]);
-        numb += show[i];
-      } else if (
-        show[i] == "+" ||
-        show[i] == "-" ||
-        show[i] == "*" ||
-        show[i] == "/"
-      ) {
-        setOperator(show[i]);
-        if (numb != "") {
-          numb = "";
-          setNum(numb);
-        }
-      } else if (show[i] == "C") {
-        setShow("");
+      if (show[i] == "=") {
+        setToken(true);
       }
     }
   }, [show]);
-  console.log(show);
-  console.log(operator);
+
+  useEffect(() => {
+    let x = 0,
+      y = 0;
+    let numb = "";
+    if (token) {
+      setToken(false);
+      let localoperator = {},
+        localnumber = {};
+      for (i = 0; i < show.length; i++) {
+        if (
+          show[i] == 1 ||
+          show[i] == 2 ||
+          show[i] == 3 ||
+          show[i] == 4 ||
+          show[i] == 5 ||
+          show[i] == 6 ||
+          show[i] == 7 ||
+          show[i] == 8 ||
+          show[i] == 9 ||
+          show[i] == 0 ||
+          show[i] == "."
+        ) {
+          numb += show[i];
+          continue;
+        } else if (
+          show[i] == "+" ||
+          show[i] == "-" ||
+          show[i] == "*" ||
+          show[i] == "/"
+        ) {
+          const a = show[i];
+          localoperator = { ...localoperator, [y++]: a };
+          if (numb != "") {
+            localnumber = { ...localnumber, [x++]: numb };
+            numb = "";
+          }
+        } else if (show[i] == "=") {
+          localnumber = { ...localnumber, [x]: numb };
+          numb = "";
+        }
+      }
+
+      let newNum = [];
+      Object.keys(localnumber).map((item) => {
+        newNum = [...newNum, +localnumber[item]];
+      });
+      setNum(newNum);
+      let newOperator = [];
+      Object.keys(localoperator).map((item) => {
+        newOperator = [...newOperator, localoperator[item]];
+      });
+      setOperator(newOperator);
+    }
+  }, [token]);
+
+  console.log(num, operator);
+
   return (
     <div>
       <div className="border-2 border-black">
+        <CalculatorTotal
+          number={num}
+          oper={operator}
+          count={num.length}
+          setTotal={setTotal}
+        />
         <Input value={show} onChange={handleInputChange} />
+        <div className="flex items-center justify-center">
+          <div className="text-blue-500 text-xl font-semibold">Result is :</div>
+          <div className="h-10 w-40 mx-4">
+            <Input value={total} onChange={handleInputChange} />
+          </div>
+        </div>
         <div>
           <div className="flex items-center justify-center">
             <div className="h-10 w-14 p-2">
@@ -158,7 +207,8 @@ function OnScreenCalculator() {
               </CalculatorButton>
             </div>
           </div>
-          <div className="flex items-center justify-center">
+
+          {/* <div className="flex items-center justify-center">
             <div className="h-10 w-14 p-2">
               <CalculatorButton></CalculatorButton>
             </div>
@@ -174,7 +224,7 @@ function OnScreenCalculator() {
             <div className="h-10 w-14 p-2">
               <CalculatorButton></CalculatorButton>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
