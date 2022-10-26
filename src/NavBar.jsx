@@ -11,7 +11,7 @@ function NavBar({ name, setName }) {
   return (
     <div>
       <div className="flex flex-col text-yellow-300 items-center bg-indigo-500">
-        <Heading>This is my website</Heading>
+        <Heading>This is only for fun</Heading>
         {name && (
           <div className="flex flex-col items-center">
             <Heading>Hey {name}, Welcome back.....</Heading>
