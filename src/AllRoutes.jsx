@@ -9,6 +9,7 @@ import NumberPattern from "./NumberPattern";
 import OnScreenCalculator from "./OnScreenCalculator";
 import Pattern from "./Pattern";
 import StarPattern from "./StarPattern";
+import StopWatch from "./StopWatch";
 import Todo from "./Todo";
 import User from "./User";
 
@@ -24,6 +25,7 @@ function AllRoutes() {
         <Route path="/calculatepattern" element={<CalculatePattern />} />
         <Route path="/onscreencalculator" element={<OnScreenCalculator />} />
         <Route path="/notes" element={<Notes />} />
+        <Route path="/stopwatch" element={<StopWatch />} />
         {/* <Route path="/calculator" element={<Calculator />} />
         <Route path="/calculate" element={<Calculate />} /> */}
 

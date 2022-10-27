@@ -21,7 +21,7 @@ function User({ name, setName }) {
   }
   return (
     <div>
-      <div className="flex flex-col h-auto text-yellow-300 items-center bg-lime-500">
+      <div className="flex flex-col py-8 space-y-4 h-auto text-yellow-300 items-center bg-lime-500">
         <Heading>Hey User, Enter Your Name To Continue.....</Heading>
 
         <div className="flex flex-col items-center space-y-2 pb-2">
