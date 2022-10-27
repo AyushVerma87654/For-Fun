@@ -89,12 +89,7 @@ function OnScreenCalculator() {
   return (
     <div>
       <div className="border-2 border-black">
-        <CalculatorTotal
-          number={num}
-          oper={operator}
-          count={num.length}
-          setTotal={setTotal}
-        />
+        <CalculatorTotal number={num} oper={operator} setTotal={setTotal} />
         <Input value={show} onChange={handleInputChange} />
         <div className="flex items-center justify-center">
           <div className="text-blue-500 text-xl font-semibold">Result is :</div>

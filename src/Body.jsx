@@ -14,6 +14,7 @@ function Body({ name }) {
         <Link to="/todo">To Do App</Link>
         <Link to="/patterns">Various Patterns</Link>
         <Link to="/onscreencalculator">On Screen Calculator</Link>
+        <Link to="/notes">Make Notes</Link>
         {/* <Link to="/calculator">Calculator</Link> */}
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 function Add({ num, setNum, operator, setOperator, react, setResult }) {
+  console.log("Add Runing");
   let i,
     token,
     j,
@@ -8,7 +9,10 @@ function Add({ num, setNum, operator, setOperator, react, setResult }) {
     newNum = [],
     newOperator = [];
   useEffect(() => {
+    console.log("UseEffect");
+    console.log(react);
     if (react == 3) {
+      console.log("INside If");
       for (i = 0; i < k; i++) {
         if (operator[i] == "+") {
           const result = num[i] + num[i + 1];
@@ -35,7 +39,7 @@ function Add({ num, setNum, operator, setOperator, react, setResult }) {
         }
       }
     }
-    // setResult(3);
+    setResult(3);
   }, [num, operator, react]);
 
   return <div></div>;

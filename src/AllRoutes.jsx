@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Body from "./Body";
 // import Calculate from "./Calculate";
 import CalculatePattern from "./CalculatePattern";
+import Notes from "./Notes";
 // import Calculator from "./Calculator";
 import NumberPattern from "./NumberPattern";
 import OnScreenCalculator from "./OnScreenCalculator";
@@ -22,6 +23,7 @@ function AllRoutes() {
         <Route path="/starpattern" element={<StarPattern />} />
         <Route path="/calculatepattern" element={<CalculatePattern />} />
         <Route path="/onscreencalculator" element={<OnScreenCalculator />} />
+        <Route path="/notes" element={<Notes />} />
         {/* <Route path="/calculator" element={<Calculator />} />
         <Route path="/calculate" element={<Calculate />} /> */}
 
