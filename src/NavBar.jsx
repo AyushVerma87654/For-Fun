@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./ForButton";
+import Button from "./Button";
 import Heading from "./Heading";
 import withUser from "./withUser";
 

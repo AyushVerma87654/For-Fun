@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "./ForButton";
+import Button from "./Button";
 import Heading from "./Heading";
 
 function Notes() {
@@ -22,7 +22,7 @@ function Notes() {
   };
   console.log(data);
   return (
-    <div className="py-4 h-auto text-rose-600 bg-lime-300">
+    <div className="py-4 text-rose-600 bg-lime-300">
       <div className=""></div>
       <div className=""></div>
       <div className=""></div>

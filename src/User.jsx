@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router";
 import Body from "./Body";
-import Button from "./ForButton";
+import Button from "./Button";
 import Heading from "./Heading";
 import Input from "./Input";
 import withUser from "./withUser";

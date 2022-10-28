@@ -4,12 +4,16 @@ import Heading from "./Heading";
 
 function Pattern() {
   return (
-    <div className="bg-lime-500 text-rose-600">
+    <div className="bg-lime-500 text-rose-600 h-64">
       <Link to="/numberpattern">
-        <Heading> Number Pattern</Heading>
+        <div className="h-20">
+          <Heading> Number Pattern</Heading>
+        </div>
       </Link>
       <Link to="/starpattern">
-        <Heading>Star Pattern</Heading>
+        <div className="h-20">
+          <Heading>Star Pattern</Heading>
+        </div>
       </Link>
     </div>
   );

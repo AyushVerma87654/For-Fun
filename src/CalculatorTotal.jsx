@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Call from "./Call";
 import { CalculatorContext } from "./Context";
 import Operation from "./Operation";
 import Add from "./Operations/Add";
@@ -25,11 +26,22 @@ function CalculatorTotal({ number, oper, setTotal }) {
 
   let k = num.length;
   console.log("react", react);
+  // const symbols = ["/", "*", "-", "+"];
   useEffect(() => {
-    // call({ symbol: "/", result, k, operator, setReact, value: 1 });
-    // call({ symbol: "*", result, k, operator, setReact, value: 2 });
-    // call({ symbol: "-", result, k, operator, setReact, value: 3 });
-    // call({ symbol: "+", result, k, operator, setReact, value: 4 });
+    // for (let i = 0; i < symbols.length; i++) {
+    //   console.log(i);
+    //   return (
+    //     <Call
+    //       symbol={symbols[i]}
+    //       result={result}
+    //       k={k}
+    //       operator={operator}
+    //       setReact={setReact}
+    //       value={i + 1}
+    //     />
+    //   );
+    // }
+    // <Call />
 
     for (let i = 0; i < k; i++) {
       if (operator[i] == "/") {
@@ -75,13 +87,13 @@ function CalculatorTotal({ number, oper, setTotal }) {
         }
       }
     }
-
+    // useEffect(() => {
     if (num.length != 1 && operator.length != 0) {
       setReload(!reload);
     } else {
       setTotal(num);
     }
-  }, [num, operator]);
+  }, [num, operator, result]);
   console.log("operator", operator);
   console.log("num", num);
 
