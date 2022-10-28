@@ -19,6 +19,7 @@ function StopWatch() {
     } else {
       setTime();
       setShowInput(false);
+      setShowTime(false);
       setInput(0);
     }
   };
@@ -46,7 +47,7 @@ function StopWatch() {
           </div>
         )}
       </div>
-      {showInput && (
+      {showInput && !showTime && (
         <div>
           <div className="flex items-center justify-center m-4 space-x-10">
             <div className="h-10 w-20">
@@ -56,14 +57,13 @@ function StopWatch() {
               <Button onClick={handleSubmitButton}>SUBMIT</Button>
             </div>
           </div>
-          {time > 0 && (
-            <div className="flex items-center justify-center m-12 text-9xl font-bold">
-              {time}
-            </div>
-          )}
         </div>
       )}
-
+      {time > 0 && (
+        <div className="flex items-center justify-center m-12 text-9xl font-bold">
+          {time}
+        </div>
+      )}
       <div></div>
       <div></div>
     </div>
