@@ -21,8 +21,10 @@ function NavBar({ name, setName }) {
             <div className="h-auto w-full pl-2 py-8">
               <Heading>Hey {name}, Welcome back.....</Heading>
             </div>
-            <div className="h-auto w-auto mr-2">
-              <Button onClick={handleResetClick}>NEW USER</Button>
+            <div className="h-auto w-auto font-semibold mr-2">
+              <div className="w-36 h-10">
+                <Button onClick={handleResetClick}>NEW USER</Button>
+              </div>
             </div>
           </div>
         )}
