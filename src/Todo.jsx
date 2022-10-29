@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import AddTodo from "./AddTodo";
 import Display from "./Display";
-import { ImCross } from "react-icons/im";
 
 function Todo() {
   const todoStorage = localStorage.getItem("Todo") || "[]";
@@ -54,8 +53,6 @@ function Todo() {
     localStorage.setItem("Done", doneString);
   };
 
-  const handleRemoveClick = (data) => removeDone(data);
-
   const removeDone = (data) => {
     const newDone = [...done];
     const newDonee = newDone.filter((item) => {
@@ -81,18 +78,15 @@ function Todo() {
       <div className="my-4">
         {done &&
           done.map((item) => (
-            <div className="flex space-x-5 item">
-              <Display
-                key={item}
-                data={item}
-                onAdd={onAddFromDone}
-                checked="true"
-              />
-              <ImCross
-                className="w-2 text-end"
-                onClick={(event) => handleRemoveClick(item)}
-              />
-            </div>
+            <Display
+              key={item}
+              show={true}
+              data={item}
+              onAdd={onAddFromDone}
+              checked={true}
+              removeDone={removeDone}
+              readOnly="readOnly"
+            />
           ))}
       </div>
     </div>
