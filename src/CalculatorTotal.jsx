@@ -6,6 +6,7 @@ import Add from "./Operations/Add";
 import Divide from "./Operations/Divide";
 import Multiply from "./Operations/Multiply";
 import Substraction from "./Operations/Substraction";
+import SingleOperation from "./SingleOperation";
 import { call } from "./utilities/Call";
 
 function CalculatorTotal({ number, oper, setTotal }) {
@@ -25,7 +26,7 @@ function CalculatorTotal({ number, oper, setTotal }) {
   }, [number, oper]);
 
   let k = num.length;
-  console.log("react", react);
+  // console.log("react", react);
   // const symbols = ["/", "*", "-", "+"];
   useEffect(() => {
     // for (let i = 0; i < symbols.length; i++) {
@@ -44,9 +45,20 @@ function CalculatorTotal({ number, oper, setTotal }) {
     // <Call />
 
     for (let i = 0; i < k; i++) {
+      if (operator[i] == "sq") {
+        setReact(5);
+        if (result == 5) {
+          continue;
+        } else {
+          const timeout = setTimeout(3 * 1000);
+          return () => clearTimeout(timeout);
+        }
+      }
+    }
+    for (let i = 0; i < k; i++) {
       if (operator[i] == "/") {
-        setReact(1);
-        if (result == 1) {
+        setReact(11);
+        if (result == 11) {
           continue;
         } else {
           const timeout = setTimeout(3 * 1000);
@@ -56,8 +68,8 @@ function CalculatorTotal({ number, oper, setTotal }) {
     }
     for (let i = 0; i < k; i++) {
       if (operator[i] == "*") {
-        setReact(2);
-        if (result == 2) {
+        setReact(12);
+        if (result == 12) {
           continue;
         } else {
           const timeout = setTimeout(3 * 1000);
@@ -67,8 +79,8 @@ function CalculatorTotal({ number, oper, setTotal }) {
     }
     for (let i = 0; i < k; i++) {
       if (operator[i] == "-") {
-        setReact(3);
-        if (result == 3) {
+        setReact(13);
+        if (result == 13) {
           continue;
         } else {
           const timeout = setTimeout(3 * 1000);
@@ -78,8 +90,8 @@ function CalculatorTotal({ number, oper, setTotal }) {
     }
     for (let i = 0; i < k; i++) {
       if (operator[i] == "+") {
-        setReact(4);
-        if (result == 4) {
+        setReact(14);
+        if (result == 14) {
           continue;
         } else {
           const timeout = setTimeout(3 * 1000);
@@ -94,18 +106,19 @@ function CalculatorTotal({ number, oper, setTotal }) {
       setTotal(num);
     }
   }, [num, operator, result]);
-  console.log("operator", operator);
-  console.log("num", num);
+  // console.log("operator", operator);
+  // console.log("num", num);
 
   return (
     <div>
       <CalculatorContext.Provider
         value={{ num, setNum, operator, setOperator, react, setResult }}
       >
-        <Operation value="1" />
-        <Operation value="2" />
-        <Operation value="3" />
-        <Operation value="4" />
+        <SingleOperation value="5" />
+        <Operation value="11" />
+        <Operation value="12" />
+        <Operation value="13" />
+        <Operation value="14" />
         {/* <Divide
         num={num}
         setNum={setNum}

@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { CalculatorContext } from "./Context";
 
-function Operation({ value }) {
+function SingleOperation({ value }) {
   let { num, setNum, operator, setOperator, react, setResult } =
     useContext(CalculatorContext);
+
   let i,
     token,
     j,
@@ -11,23 +12,26 @@ function Operation({ value }) {
     newNum = [],
     symbol,
     newOperator = [];
+
   useEffect(() => {
     for (i = 0; i < k; i++) {
       let result;
       if (react == +value) {
-        if (react == 11) {
-          symbol = "/";
-          result = num[i] / num[i + 1];
-        } else if (react == 12) {
-          symbol = "*";
-          result = num[i] * num[i + 1];
-        } else if (react == 13) {
-          symbol = "-";
-          result = num[i] - num[i + 1];
-        } else if (react == 14) {
-          symbol = "+";
-          result = num[i] + num[i + 1];
+        if (react == 5) {
+          symbol = "sq";
+          result = num[i] * num[i];
         }
+
+        //  else if (react == 12) {
+        //   symbol = "*";
+        //   result = num[i] * num[i + 1];
+        // } else if (react == 13) {
+        //   symbol = "-";
+        //   result = num[i] - num[i + 1];
+        // } else if (react == 14) {
+        //   symbol = "+";
+        //   result = num[i] + num[i + 1];
+        // }
         if (operator[i] == symbol) {
           for (j = 0; j < i; j++) {
             token = 1;
@@ -36,10 +40,10 @@ function Operation({ value }) {
           }
           newNum[i] = result;
           token = 1;
-          for (j = i + 2; j < k; j++) {
+          for (j = i + 1; j < k; j++) {
             token = 1;
             newNum = [...newNum, +num[j]];
-            newOperator = [...newOperator, operator[j - 1]];
+            newOperator = [...newOperator, operator[j]];
           }
         }
 
@@ -57,4 +61,4 @@ function Operation({ value }) {
   return <div></div>;
 }
 
-export default Operation;
+export default SingleOperation;
