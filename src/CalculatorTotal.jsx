@@ -16,6 +16,7 @@ function CalculatorTotal({ number, oper, setTotal }) {
   // [+,  -,  *,   /]
   const [num, setNum] = useState([]);
   const [operator, setOperator] = useState([]);
+  const [symbol, setSymbol] = useState("");
   const [react, setReact] = useState(0);
   const [result, setResult] = useState(0);
   const [reload, setReload] = useState(false);
@@ -25,7 +26,6 @@ function CalculatorTotal({ number, oper, setTotal }) {
     setReact(0);
   }, [number, oper]);
 
-  let k = num.length;
   // console.log("react", react);
   // const symbols = ["/", "*", "-", "+"];
   useEffect(() => {
@@ -44,10 +44,21 @@ function CalculatorTotal({ number, oper, setTotal }) {
     // }
     // <Call />
 
+    let k = operator.length;
+
+    // for (let i = 0; i < k; i++) {
+    //   if (operator[i] == "sq" || operator[i] == "%" || operator[i] == "sqrt") {
+    //     console.log("i", i);
+    //     console.log("operator", operator[i]);
+    //   }
+    // }
+
     for (let i = 0; i < k; i++) {
-      if (operator[i] == "sq") {
-        setReact(5);
-        if (result == 5) {
+      if (operator[i] == "sq" || operator[i] == "%" || operator[i] == "sqrt") {
+        const newReact = react + 1;
+        setReact(newReact);
+        setSymbol(operator[i]);
+        if (result == 1) {
           continue;
         } else {
           const timeout = setTimeout(3 * 1000);
@@ -114,7 +125,14 @@ function CalculatorTotal({ number, oper, setTotal }) {
       <CalculatorContext.Provider
         value={{ num, setNum, operator, setOperator, react, setResult }}
       >
-        <SingleOperation value="5" />
+        <SingleOperation value="1" symbol={symbol} />
+        {/* <SingleOperation value="2" />
+        <SingleOperation value="3" /> */}
+        {/* <SingleOperation value="4" /> */}
+        {/* <SingleOperation value="5" /> */}
+        {/* <SingleOperation value="6" /> */}
+        {/* <SingleOperation value="7" /> */}
+        {/* <SingleOperation value="8" /> */}
         <Operation value="11" />
         <Operation value="12" />
         <Operation value="13" />

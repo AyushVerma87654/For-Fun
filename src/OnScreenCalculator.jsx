@@ -71,7 +71,7 @@ function OnScreenCalculator() {
           show[i] == "-" ||
           show[i] == "*" ||
           show[i] == "/" ||
-          show[i] == "sq"
+          show[i] == "%"
         ) {
           const a = show[i];
           if (oper != "") {
@@ -89,9 +89,18 @@ function OnScreenCalculator() {
             localoperator = { ...localoperator, [y++]: oper };
             oper = "";
           }
-          localnumber = { ...localnumber, [x]: numb };
-          numb = "";
-        } else if (show[i] == "s" || show[i] == "q") {
+          if (numb != "") {
+            localnumber = { ...localnumber, [x++]: numb };
+            numb = "";
+          }
+        }
+        // if (
+        //   show[i] == "s" ||
+        //   show[i] == "q" ||
+        //   show[i] == "r" ||
+        //   show[i] == "t"
+        // )
+        else {
           oper += show[i];
           if (numb != "") {
             localnumber = { ...localnumber, [x++]: numb };
@@ -127,6 +136,33 @@ function OnScreenCalculator() {
           </div>
         </div>
         <div>
+          <div className="flex items-center justify-center">
+            <div className="h-10 w-14 p-2">
+              <CalculatorButton onClick={() => handleButtonClick("sqrt")}>
+                sqrt
+              </CalculatorButton>
+            </div>
+            <div className="h-10 w-14 p-2">
+              <CalculatorButton onClick={() => handleButtonClick()}>
+                n!
+              </CalculatorButton>
+            </div>
+            <div className="h-10 w-14 p-2">
+              <CalculatorButton
+                onClick={() => handleButtonClick()}
+              ></CalculatorButton>
+            </div>
+            <div className="h-10 w-14 p-2">
+              <CalculatorButton
+                onClick={() => handleButtonClick("")}
+              ></CalculatorButton>
+            </div>
+            <div className="h-10 w-14 p-2">
+              <CalculatorButton
+                onClick={() => handleButtonClick("")}
+              ></CalculatorButton>
+            </div>
+          </div>
           <div className="flex items-center justify-center">
             <div className="h-10 w-14 p-2">
               <CalculatorButton onClick={() => handleButtonClick(7)}>
@@ -212,7 +248,9 @@ function OnScreenCalculator() {
           </div>
           <div className="flex items-center justify-center">
             <div className="h-10 w-14 p-2">
-              <CalculatorButton></CalculatorButton>
+              <CalculatorButton onClick={() => handleButtonClick("=")}>
+                =
+              </CalculatorButton>
             </div>
             <div className="h-10 w-14 p-2">
               <CalculatorButton onClick={() => handleButtonClick(0)}>
@@ -230,27 +268,37 @@ function OnScreenCalculator() {
               </CalculatorButton>
             </div>
             <div className="h-10 w-14 p-2">
-              <CalculatorButton onClick={() => handleButtonClick("=")}>
-                =
+              <CalculatorButton onClick={() => handleButtonClick("%")}>
+                %
               </CalculatorButton>
             </div>
           </div>
 
           {/* <div className="flex items-center justify-center">
             <div className="h-10 w-14 p-2">
-              <CalculatorButton></CalculatorButton>
+              <CalculatorButton
+                onClick={() => handleButtonClick()}
+              ></CalculatorButton>
             </div>
             <div className="h-10 w-14 p-2">
-              <CalculatorButton></CalculatorButton>
+              <CalculatorButton
+                onClick={() => handleButtonClick()}
+              ></CalculatorButton>
             </div>
             <div className="h-10 w-14 p-2">
-              <CalculatorButton></CalculatorButton>
+              <CalculatorButton
+                onClick={() => handleButtonClick()}
+              ></CalculatorButton>
             </div>
             <div className="h-10 w-14 p-2">
-              <CalculatorButton></CalculatorButton>
+              <CalculatorButton
+                onClick={() => handleButtonClick("")}
+              ></CalculatorButton>
             </div>
             <div className="h-10 w-14 p-2">
-              <CalculatorButton></CalculatorButton>
+              <CalculatorButton
+                onClick={() => handleButtonClick("")}
+              ></CalculatorButton>
             </div>
           </div> */}
         </div>

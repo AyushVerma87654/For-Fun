@@ -1,62 +1,55 @@
 import React, { useContext, useEffect } from "react";
 import { CalculatorContext } from "./Context";
 
-function SingleOperation({ value }) {
+function SingleOperation({ value, symbol }) {
   let { num, setNum, operator, setOperator, react, setResult } =
     useContext(CalculatorContext);
 
   let i,
     token,
     j,
-    k = num.length,
+    k = operator.length,
     newNum = [],
-    symbol,
     newOperator = [];
 
   useEffect(() => {
     for (i = 0; i < k; i++) {
       let result;
-      if (react == +value) {
-        if (react == 5) {
-          symbol = "sq";
+      if (operator[i] == symbol) {
+        if (symbol == "sq") {
           result = num[i] * num[i];
+        } else if (symbol == "%") {
+          result = num[i] * 100;
+        } else if (symbol == "sqrt") {
+          result = Math.sqrt(num[i]);
         }
+        console.log("result", result);
+        console.log(i);
 
-        //  else if (react == 12) {
-        //   symbol = "*";
-        //   result = num[i] * num[i + 1];
-        // } else if (react == 13) {
-        //   symbol = "-";
-        //   result = num[i] - num[i + 1];
-        // } else if (react == 14) {
-        //   symbol = "+";
-        //   result = num[i] + num[i + 1];
-        // }
-        if (operator[i] == symbol) {
-          for (j = 0; j < i; j++) {
-            token = 1;
-            newNum = [...newNum, +num[j]];
-            newOperator = [...newOperator, operator[j]];
-          }
-          newNum[i] = result;
+        for (j = 0; j < i; j++) {
           token = 1;
-          for (j = i + 1; j < k; j++) {
-            token = 1;
-            newNum = [...newNum, +num[j]];
-            newOperator = [...newOperator, operator[j]];
-          }
+          newNum = [...newNum, +num[j]];
+          newOperator = [...newOperator, operator[j]];
         }
-
-        if (token == 1) {
-          setNum(newNum);
-          setOperator(newOperator);
-          token = 0;
-          break;
+        newNum[i] = result;
+        token = 1;
+        for (j = i + 1; j < k; j++) {
+          token = 1;
+          newNum = [...newNum, +num[j]];
+          newOperator = [...newOperator, operator[j]];
         }
       }
+
+      if (token == 1) {
+        setNum(newNum);
+        setOperator(newOperator);
+        token = 0;
+        break;
+      }
     }
+
     setResult(value);
-  }, [num, operator, react]);
+  }, [react]);
 
   return <div></div>;
 }
