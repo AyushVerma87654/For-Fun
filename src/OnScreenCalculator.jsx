@@ -71,6 +71,7 @@ function OnScreenCalculator() {
           show[i] == "-" ||
           show[i] == "*" ||
           show[i] == "/" ||
+          show[i] == "!" ||
           show[i] == "%"
         ) {
           const a = show[i];
@@ -93,14 +94,7 @@ function OnScreenCalculator() {
             localnumber = { ...localnumber, [x++]: numb };
             numb = "";
           }
-        }
-        // if (
-        //   show[i] == "s" ||
-        //   show[i] == "q" ||
-        //   show[i] == "r" ||
-        //   show[i] == "t"
-        // )
-        else {
+        } else {
           oper += show[i];
           if (numb != "") {
             localnumber = { ...localnumber, [x++]: numb };
@@ -143,7 +137,7 @@ function OnScreenCalculator() {
               </CalculatorButton>
             </div>
             <div className="h-10 w-14 p-2">
-              <CalculatorButton onClick={() => handleButtonClick()}>
+              <CalculatorButton onClick={() => handleButtonClick("!")}>
                 n!
               </CalculatorButton>
             </div>

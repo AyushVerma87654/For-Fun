@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { CalculatorContext } from "./Context";
 
 function SingleOperation({ value, symbol }) {
-  let { num, setNum, operator, setOperator, react, setResult } =
+  let { num, setNum, setReact, operator, setOperator, react, setResult } =
     useContext(CalculatorContext);
 
   let i,
@@ -22,9 +22,14 @@ function SingleOperation({ value, symbol }) {
           result = num[i] * 100;
         } else if (symbol == "sqrt") {
           result = Math.sqrt(num[i]);
+        } else if (symbol == "!") {
+          result = 1;
+          if (num[i] != 0 || num[i] != 1) {
+            for (let t = 1; t <= num[i]; t++) {
+              result *= t;
+            }
+          }
         }
-        console.log("result", result);
-        console.log(i);
 
         for (j = 0; j < i; j++) {
           token = 1;
@@ -43,6 +48,7 @@ function SingleOperation({ value, symbol }) {
       if (token == 1) {
         setNum(newNum);
         setOperator(newOperator);
+        setReact(0);
         token = 0;
         break;
       }

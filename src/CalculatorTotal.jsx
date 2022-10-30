@@ -54,7 +54,12 @@ function CalculatorTotal({ number, oper, setTotal }) {
     // }
 
     for (let i = 0; i < k; i++) {
-      if (operator[i] == "sq" || operator[i] == "%" || operator[i] == "sqrt") {
+      if (
+        operator[i] == "sq" ||
+        operator[i] == "%" ||
+        operator[i] == "!" ||
+        operator[i] == "sqrt"
+      ) {
         const newReact = react + 1;
         setReact(newReact);
         setSymbol(operator[i]);
@@ -123,7 +128,15 @@ function CalculatorTotal({ number, oper, setTotal }) {
   return (
     <div>
       <CalculatorContext.Provider
-        value={{ num, setNum, operator, setOperator, react, setResult }}
+        value={{
+          num,
+          setReact,
+          setNum,
+          operator,
+          setOperator,
+          react,
+          setResult,
+        }}
       >
         <SingleOperation value="1" symbol={symbol} />
         {/* <SingleOperation value="2" />
