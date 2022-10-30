@@ -17,28 +17,29 @@ function Operation({ value }) {
       if (react == +value) {
         if (react == 11) {
           symbol = "/";
-          result = num[i] / num[i + 1];
+          result = +num[i] / +num[i + 1];
         } else if (react == 12) {
           symbol = "*";
-          result = num[i] * num[i + 1];
+          result = +num[i] * +num[i + 1];
         } else if (react == 13) {
           symbol = "-";
-          result = num[i] - num[i + 1];
+          result = +num[i] - +num[i + 1];
         } else if (react == 14) {
           symbol = "+";
-          result = num[i] + num[i + 1];
+          result = +num[i] + +num[i + 1];
         }
+        result = JSON.stringify(result);
         if (operator[i] == symbol) {
           for (j = 0; j < i; j++) {
             token = 1;
-            newNum = [...newNum, +num[j]];
+            newNum = [...newNum, num[j]];
             newOperator = [...newOperator, operator[j]];
           }
           newNum[i] = result;
           token = 1;
           for (j = i + 2; j < k; j++) {
             token = 1;
-            newNum = [...newNum, +num[j]];
+            newNum = [...newNum, num[j]];
             newOperator = [...newOperator, operator[j - 1]];
           }
         }

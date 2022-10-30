@@ -10,17 +10,17 @@ import SingleOperation from "./SingleOperation";
 import { call } from "./utilities/Call";
 
 function CalculatorTotal({ number, oper, setTotal }) {
-  // 12 + 43 - 12 * 2 / 4
-  // [12 ,43 ,12  ,2,  4]
-  //  0   1   2    3   4
-  // [+,  -,  *,   /]
+  // add mainNum and setMainNum useState
+  // add mainOperator and setMainOperator useState
   const [num, setNum] = useState([]);
   const [operator, setOperator] = useState([]);
   const [symbol, setSymbol] = useState("");
   const [react, setReact] = useState(0);
   const [result, setResult] = useState(0);
   const [reload, setReload] = useState(false);
+
   useEffect(() => {
+    // data will now be stored in mainNum and mainOperator instead of num and operator
     setOperator(oper);
     setNum(number);
     setReact(0);
@@ -52,6 +52,28 @@ function CalculatorTotal({ number, oper, setTotal }) {
     //     console.log("operator", operator[i]);
     //   }
     // }
+
+    for (let i = 0; i < k; i++) {
+      let first, second;
+      if (operator[i] == "(") {
+        first = i;
+      } else if (operator[i] == ")") {
+        second = i;
+      }
+      // creation of newNum and newOperator
+      setReact(11);
+      // setNum(newNum)
+      // setOperator(newOperator)
+      if (result == 11) {
+        // remove paranthesis from mainNum and mainOperator
+        // setNum(mainNum)
+        // setOperator(mainOperator)
+        continue;
+      } else {
+        const timeout = setTimeout(3 * 1000);
+        return () => clearTimeout(timeout);
+      }
+    }
 
     for (let i = 0; i < k; i++) {
       if (
@@ -122,8 +144,8 @@ function CalculatorTotal({ number, oper, setTotal }) {
       setTotal(num);
     }
   }, [num, operator, result]);
-  // console.log("operator", operator);
-  // console.log("num", num);
+  console.log("operator", operator);
+  console.log("num", num);
 
   return (
     <div>
@@ -139,49 +161,10 @@ function CalculatorTotal({ number, oper, setTotal }) {
         }}
       >
         <SingleOperation value="1" symbol={symbol} />
-        {/* <SingleOperation value="2" />
-        <SingleOperation value="3" /> */}
-        {/* <SingleOperation value="4" /> */}
-        {/* <SingleOperation value="5" /> */}
-        {/* <SingleOperation value="6" /> */}
-        {/* <SingleOperation value="7" /> */}
-        {/* <SingleOperation value="8" /> */}
         <Operation value="11" />
         <Operation value="12" />
         <Operation value="13" />
         <Operation value="14" />
-        {/* <Divide
-        num={num}
-        setNum={setNum}
-        operator={operator}
-        setOperator={setOperator}
-        react={react}
-        setResult={setResult}
-      />
-      <Multiply
-        num={num}
-        setNum={setNum}
-        operator={operator}
-        setOperator={setOperator}
-        react={react}
-        setResult={setResult}
-      />
-      <Add
-        num={num}
-        setNum={setNum}
-        operator={operator}
-        setOperator={setOperator}
-        react={react}
-        setResult={setResult}
-      />
-      <Substraction
-        num={num}
-        setNum={setNum}
-        operator={operator}
-        setOperator={setOperator}
-        react={react}
-        setResult={setResult}
-      /> */}
       </CalculatorContext.Provider>
     </div>
   );

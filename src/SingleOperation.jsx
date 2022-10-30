@@ -15,21 +15,25 @@ function SingleOperation({ value, symbol }) {
   useEffect(() => {
     for (i = 0; i < k; i++) {
       let result;
+
       if (operator[i] == symbol) {
+        const number = +num[i];
         if (symbol == "sq") {
-          result = num[i] * num[i];
+          result = number * number;
         } else if (symbol == "%") {
-          result = num[i] * 100;
+          result = number * 100;
         } else if (symbol == "sqrt") {
-          result = Math.sqrt(num[i]);
+          result = Math.sqrt(number);
         } else if (symbol == "!") {
           result = 1;
-          if (num[i] != 0 || num[i] != 1) {
-            for (let t = 1; t <= num[i]; t++) {
+          if (number != 0 || number != 1) {
+            for (let t = 1; t <= number; t++) {
               result *= t;
             }
           }
         }
+
+        result = JSON.stringify(result);
 
         for (j = 0; j < i; j++) {
           token = 1;
