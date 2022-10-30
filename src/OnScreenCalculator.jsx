@@ -58,14 +58,26 @@ function OnScreenCalculator() {
           show[i] == 8 ||
           show[i] == 9 ||
           show[i] == 0 ||
-          show[i] == "."
+          show[i] == "." ||
+          show[i] == "(" ||
+          show[i] == ")"
         ) {
+          const a = show[i];
           if (oper != "") {
             localoperator = { ...localoperator, [y++]: oper };
             oper = "";
           }
-          numb += show[i];
-          continue;
+
+          if (a == "(" || a == ")") {
+            if (numb != "") {
+              localnumber = { ...localnumber, [x++]: numb };
+              numb = "";
+            }
+            localnumber = { ...localnumber, [x++]: a };
+            localoperator = { ...localoperator, [y++]: a };
+          } else {
+            numb += +a;
+          }
         } else if (
           show[i] == "+" ||
           show[i] == "-" ||
@@ -105,8 +117,16 @@ function OnScreenCalculator() {
 
       let newNum = [];
       Object.keys(localnumber).map((item) => {
-        newNum = [...newNum, +localnumber[item]];
+        const num = localnumber[item];
+        console.log(num);
+
+        if (item == "(" || item == ")") {
+          newNum = [...newNum, num];
+        } else {
+          newNum = [...newNum, num];
+        }
       });
+
       setNum(newNum);
       let newOperator = [];
       Object.keys(localoperator).map((item) => {
@@ -116,7 +136,7 @@ function OnScreenCalculator() {
     }
   }, [token]);
 
-  // console.log(num, operator);
+  console.log(num, operator);
 
   return (
     <div>
@@ -142,14 +162,14 @@ function OnScreenCalculator() {
               </CalculatorButton>
             </div>
             <div className="h-10 w-14 p-2">
-              <CalculatorButton
-                onClick={() => handleButtonClick()}
-              ></CalculatorButton>
+              <CalculatorButton onClick={() => handleButtonClick("(")}>
+                (
+              </CalculatorButton>
             </div>
             <div className="h-10 w-14 p-2">
-              <CalculatorButton
-                onClick={() => handleButtonClick("")}
-              ></CalculatorButton>
+              <CalculatorButton onClick={() => handleButtonClick(")")}>
+                )
+              </CalculatorButton>
             </div>
             <div className="h-10 w-14 p-2">
               <CalculatorButton
