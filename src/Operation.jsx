@@ -29,9 +29,6 @@ function Operation({ value }) {
           result = +num[i] + +num[i + 1];
         }
         result = JSON.stringify(result);
-        console.log(result);
-        console.log("operator[i] ", operator[i]);
-        console.log("symbol", symbol);
 
         if (operator[i] == symbol) {
           for (j = 0; j < i; j++) {
@@ -48,8 +45,8 @@ function Operation({ value }) {
           }
         }
 
-        console.log("newNum", newNum);
-        console.log("newOperator", newOperator);
+        // console.log("newNum", newNum);
+        // console.log("newOperator", newOperator);
 
         if (token == 1) {
           setNum(newNum);
