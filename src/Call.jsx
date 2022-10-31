@@ -29,8 +29,6 @@ export function extract({
     firstnum,
     secondnum;
 
-  // extract({ k, setNum, setOperator, mainNum, mainOperator });
-
   for (let i = 0; i < k; i++) {
     if (mainOperator[i] == "(" || mainOperator[i] == ")") {
       if (mainOperator[i] == "(") {
