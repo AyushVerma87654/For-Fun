@@ -118,7 +118,6 @@ function OnScreenCalculator() {
       let newNum = [];
       Object.keys(localnumber).map((item) => {
         const num = localnumber[item];
-        console.log(num);
 
         if (item == "(" || item == ")") {
           newNum = [...newNum, num];
@@ -136,7 +135,7 @@ function OnScreenCalculator() {
     }
   }, [token]);
 
-  console.log(num, operator);
+  // console.log(num, operator);
 
   return (
     <div>

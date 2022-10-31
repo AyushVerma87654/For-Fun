@@ -95,6 +95,8 @@ function CalculatorTotal({ number, oper, setTotal }) {
     }
     for (let i = 0; i < k; i++) {
       if (operator[i] == "/") {
+        console.log("Divide");
+
         setReact(11);
         if (result == 11) {
           continue;
@@ -106,6 +108,8 @@ function CalculatorTotal({ number, oper, setTotal }) {
     }
     for (let i = 0; i < k; i++) {
       if (operator[i] == "*") {
+        console.log("Multiply");
+
         setReact(12);
         if (result == 12) {
           continue;
@@ -117,6 +121,8 @@ function CalculatorTotal({ number, oper, setTotal }) {
     }
     for (let i = 0; i < k; i++) {
       if (operator[i] == "-") {
+        console.log("Sub");
+
         setReact(13);
         if (result == 13) {
           continue;
@@ -128,6 +134,8 @@ function CalculatorTotal({ number, oper, setTotal }) {
     }
     for (let i = 0; i < k; i++) {
       if (operator[i] == "+") {
+        console.log("ADd");
+
         setReact(14);
         if (result == 14) {
           continue;
@@ -144,8 +152,9 @@ function CalculatorTotal({ number, oper, setTotal }) {
       setTotal(num);
     }
   }, [num, operator, result]);
-  console.log("operator", operator);
-  console.log("num", num);
+  // console.log("operator", operator);
+  // console.log("num", num);
+  console.log("react", react);
 
   return (
     <div>
