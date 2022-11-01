@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Call from "./Call";
+import { fcall, extract, setData } from "./Call";
 import { CalculatorContext } from "./Context";
 import Operation from "./Operation";
 import Add from "./Operations/Add";
@@ -10,49 +10,113 @@ import SingleOperation from "./SingleOperation";
 import { call } from "./utilities/Call";
 
 function CalculatorTotal({ number, oper, setTotal }) {
-  // 12 + 43 - 12 * 2 / 4
-  // [12 ,43 ,12  ,2,  4]
-  //  0   1   2    3   4
-  // [+,  -,  *,   /]
   const [num, setNum] = useState([]);
   const [operator, setOperator] = useState([]);
+  const [mainNum, setMainNum] = useState([]);
+  const [mainOperator, setMainOperator] = useState([]);
   const [symbol, setSymbol] = useState("");
   const [react, setReact] = useState(0);
   const [result, setResult] = useState(0);
+  const [mainResult, setMainResult] = useState(0);
   const [reload, setReload] = useState(false);
+
+  let k;
+  if (mainNum.length > mainOperator.length) {
+    k = mainNum.length;
+  } else if (mainNum.length <= mainOperator.length) {
+    k = mainOperator.length;
+  }
+
+  console.log("Main", mainNum, mainOperator);
+  console.log("Num", num, operator);
+  console.log("mainResult", mainResult);
+
+  function da({ symbol, value, k, setReact, operator }) {
+    for (let i = 0; i < k; i++) {
+      if (operator[i] == symbol) {
+        setReact(value);
+        if (result == value) {
+          continue;
+        } else {
+          const timeout = setTimeout(3 * 1000);
+          return () => clearTimeout(timeout);
+        }
+      }
+    }
+  }
+
   useEffect(() => {
-    setOperator(oper);
-    setNum(number);
+    setMainOperator(oper);
+    setMainNum(number);
     setReact(0);
+    setNum([]);
+    setOperator([]);
   }, [number, oper]);
+  useEffect(() => {
+    let token = 0;
+    for (let i = 0; i < k; i++) {
+      if (mainNum[i] == "(" || mainNum[i] == ")") {
+        token = 1;
+        break;
+      }
+    }
+    if (token == 0) {
+      setNum(mainNum);
+      setOperator(mainOperator);
+    }
+  }, [mainNum, mainOperator]);
 
   // console.log("react", react);
   // const symbols = ["/", "*", "-", "+"];
+  // useEffect(() => {
+  // for (let i = 0; i < symbols.length; i++) {
+  //   console.log(i);
+  //   return (
+  //     <Call
+  //       symbol={symbols[i]}
+  //       result={result}
+  //       k={k}
+  //       operator={operator}
+  //       setReact={setReact}
+  //       value={i + 1}
+  //     />
+  //   );
+  // }
+  // <Call />
+
+  // console.log("k", k);
+
+  // for (let i = 0; i < k; i++) {
+  //   if (operator[i] == "sq" || operator[i] == "%" || operator[i] == "sqrt") {
+  //     console.log("i", i);
+  //     console.log("operator", operator[i]);
+  //   }
+  // }
+
   useEffect(() => {
-    // for (let i = 0; i < symbols.length; i++) {
-    //   console.log(i);
-    //   return (
-    //     <Call
-    //       symbol={symbols[i]}
-    //       result={result}
-    //       k={k}
-    //       operator={operator}
-    //       setReact={setReact}
-    //       value={i + 1}
-    //     />
-    //   );
-    // }
-    // <Call />
+    extract({
+      k,
+      setNum,
+      setOperator,
+      mainNum,
+      mainOperator,
+    });
 
-    let k = operator.length;
+    if (mainResult == 2) {
+      setMainResult(0);
 
-    // for (let i = 0; i < k; i++) {
-    //   if (operator[i] == "sq" || operator[i] == "%" || operator[i] == "sqrt") {
-    //     console.log("i", i);
-    //     console.log("operator", operator[i]);
-    //   }
-    // }
+      setData({
+        mainOperator,
+        mainNum,
+        num,
+        setMainOperator,
+        setMainNum,
+        k,
+      });
+    }
+  }, [mainNum, mainOperator, mainResult]);
 
+  useEffect(() => {
     for (let i = 0; i < k; i++) {
       if (
         operator[i] == "sq" ||
@@ -71,6 +135,7 @@ function CalculatorTotal({ number, oper, setTotal }) {
         }
       }
     }
+
     for (let i = 0; i < k; i++) {
       if (operator[i] == "/") {
         setReact(11);
@@ -115,73 +180,41 @@ function CalculatorTotal({ number, oper, setTotal }) {
         }
       }
     }
-    // useEffect(() => {
-    if (num.length != 1 && operator.length != 0) {
-      setReload(!reload);
+    if (num.length == 1 && operator.length == 0) {
+      setTotal(num[0]);
+      setMainResult(2);
     } else {
-      setTotal(num);
+      setReload(!reload);
     }
   }, [num, operator, result]);
   // console.log("operator", operator);
   // console.log("num", num);
+  // console.log("react", react);
 
   return (
     <div>
       <CalculatorContext.Provider
         value={{
           num,
+          k,
           setReact,
           setNum,
           operator,
           setOperator,
           react,
+          result,
           setResult,
+          mainNum,
+          setMainNum,
+          mainOperator,
+          setMainOperator,
         }}
       >
         <SingleOperation value="1" symbol={symbol} />
-        {/* <SingleOperation value="2" />
-        <SingleOperation value="3" /> */}
-        {/* <SingleOperation value="4" /> */}
-        {/* <SingleOperation value="5" /> */}
-        {/* <SingleOperation value="6" /> */}
-        {/* <SingleOperation value="7" /> */}
-        {/* <SingleOperation value="8" /> */}
         <Operation value="11" />
         <Operation value="12" />
         <Operation value="13" />
         <Operation value="14" />
-        {/* <Divide
-        num={num}
-        setNum={setNum}
-        operator={operator}
-        setOperator={setOperator}
-        react={react}
-        setResult={setResult}
-      />
-      <Multiply
-        num={num}
-        setNum={setNum}
-        operator={operator}
-        setOperator={setOperator}
-        react={react}
-        setResult={setResult}
-      />
-      <Add
-        num={num}
-        setNum={setNum}
-        operator={operator}
-        setOperator={setOperator}
-        react={react}
-        setResult={setResult}
-      />
-      <Substraction
-        num={num}
-        setNum={setNum}
-        operator={operator}
-        setOperator={setOperator}
-        react={react}
-        setResult={setResult}
-      /> */}
       </CalculatorContext.Provider>
     </div>
   );
