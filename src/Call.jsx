@@ -130,3 +130,16 @@ export function setData({
     localNum = [];
   }
 }
+
+export function change({ num, operator, setNum, setOperator }) {
+  if (num.length == operator.length && num.length > 0) {
+    let newNum = [...num];
+    newNum[0] = operator[0] + num[0];
+    let newOperator = [];
+    for (let j = 1; j < operator.length; j++) {
+      newOperator[j - 1] = operator[j];
+    }
+    setOperator(newOperator);
+    setNum(newNum);
+  }
+}
