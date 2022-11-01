@@ -33,10 +33,14 @@ export function extract({
   for (let i = 0; i < mainOperator.length; i++) {
     if (mainOperator[i] == "(") {
       firstoperator = i + 1;
-    } else if (mainOperator[i] == ")") {
-      secondoperator = i - 1;
-      token = 1;
-      break;
+    } else if (mainOperator[i] == ")" || mainOperator[i] == "(") {
+      if (mainOperator[i] == "(") {
+        firstoperator = i + 1;
+      } else if (mainOperator[i] == ")") {
+        secondoperator = i - 1;
+        token = 1;
+        break;
+      }
     }
   }
   if (token == 1) {
@@ -52,10 +56,14 @@ export function extract({
   for (let i = 0; i < mainNum.length; i++) {
     if (mainNum[i] == "(") {
       firstnum = i + 1;
-    } else if (mainNum[i] == ")") {
-      secondnum = i - 1;
-      token = 1;
-      break;
+    } else if (mainNum[i] == ")" || mainNum[i] == "(") {
+      if (mainNum[i] == "(") {
+        firstnum = i + 1;
+      } else if (mainNum[i] == ")") {
+        secondnum = i - 1;
+        token = 1;
+        break;
+      }
     }
   }
   if (token == 1) {
