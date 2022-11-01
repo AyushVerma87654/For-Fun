@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fcall, extract, setData } from "./Call";
+import { fcall, extract, setData, change } from "./Call";
 import { CalculatorContext } from "./Context";
 import Operation from "./Operation";
 import Add from "./Operations/Add";
@@ -136,6 +136,8 @@ function CalculatorTotal({ number, oper, setTotal }) {
       }
     }
 
+    change({ num, operator, setNum, setOperator });
+
     for (let i = 0; i < k; i++) {
       if (operator[i] == "/") {
         setReact(11);
@@ -158,6 +160,8 @@ function CalculatorTotal({ number, oper, setTotal }) {
         }
       }
     }
+    // changeNum();
+
     for (let i = 0; i < k; i++) {
       if (operator[i] == "-") {
         setReact(13);
@@ -180,7 +184,7 @@ function CalculatorTotal({ number, oper, setTotal }) {
         }
       }
     }
-    if (num.length == 1 && operator.length == 0) {
+    if (num.length == 1 && operator.length == 0 && num[0] != "-") {
       setTotal(num[0]);
       setMainResult(2);
     } else {
