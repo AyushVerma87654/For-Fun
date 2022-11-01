@@ -43,14 +43,6 @@ export function extract({
       setOperator(localOperator);
       localOperator = [];
     }
-    //  else {
-    //   console.log("else running");
-    //   console.log("mainNum[0] ", mainNum[0]);
-
-    //   if (mainNum.length != 0) {
-    //     setBracket(true);
-    //   }
-    // }
 
     if (mainNum[i] == "(" || mainNum[i] == ")") {
       if (mainNum[i] == "(") {
@@ -95,8 +87,6 @@ export function setData({
   }
 
   if (token == 1) {
-    // // setData();
-
     token = 0;
     for (let j = 0; j < mainOperator.length; j++) {
       if (mainOperator[j] == "(") {
