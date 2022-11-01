@@ -27,38 +27,88 @@ export function extract({
     firstoperator,
     secondoperator,
     firstnum,
+    token = 0,
     secondnum;
 
-  for (let i = 0; i < k; i++) {
-    if (mainOperator[i] == "(" || mainOperator[i] == ")") {
+  for (let i = 0; i < mainOperator.length; i++) {
+    if (mainOperator[i] == "(") {
+      firstoperator = i + 1;
+    } else if (mainOperator[i] == ")" || mainOperator[i] == "(") {
       if (mainOperator[i] == "(") {
         firstoperator = i + 1;
       } else if (mainOperator[i] == ")") {
         secondoperator = i - 1;
+        token = 1;
+        break;
       }
-      for (let z = firstoperator; z <= secondoperator; z++) {
-        let newOperator = mainOperator[z];
-        localOperator = [...localOperator, newOperator];
-      }
-      setOperator(localOperator);
-      localOperator = [];
     }
+  }
+  if (token == 1) {
+    token = 0;
+    for (let z = firstoperator; z <= secondoperator; z++) {
+      let newOperator = mainOperator[z];
+      localOperator = [...localOperator, newOperator];
+    }
+    setOperator(localOperator);
+    localOperator = [];
+  }
 
-    if (mainNum[i] == "(" || mainNum[i] == ")") {
+  for (let i = 0; i < mainNum.length; i++) {
+    if (mainNum[i] == "(") {
+      firstnum = i + 1;
+    } else if (mainNum[i] == ")" || mainNum[i] == "(") {
       if (mainNum[i] == "(") {
         firstnum = i + 1;
       } else if (mainNum[i] == ")") {
         secondnum = i - 1;
+        token = 1;
+        break;
       }
-      for (let z = firstnum; z <= secondnum; z++) {
-        let newNum = mainNum[z];
-        localNum = [...localNum, newNum];
-      }
-      setNum(localNum);
-      localNum = [];
     }
   }
+  if (token == 1) {
+    token = 0;
+    for (let z = firstnum; z <= secondnum; z++) {
+      let newNum = mainNum[z];
+      localNum = [...localNum, newNum];
+    }
+    // console.log();
+
+    setNum(localNum);
+    localNum = [];
+  }
 }
+// for (let i = 0; i < k; i++) {
+//   if (mainOperator[i] == "(" || mainOperator[i] == ")") {
+//     if (mainOperator[i] == "(") {
+//       firstoperator = i + 1;
+//     } else if (mainOperator[i] == ")") {
+//       secondoperator = i - 1;
+//       break;
+//     }
+//     for (let z = firstoperator; z <= secondoperator; z++) {
+//       let newOperator = mainOperator[z];
+//       localOperator = [...localOperator, newOperator];
+//     }
+//     setOperator(localOperator);
+//     localOperator = [];
+//   }
+
+//   if (mainNum[i] == "(" || mainNum[i] == ")") {
+//     if (mainNum[i] == "(") {
+//       firstnum = i + 1;
+//     } else if (mainNum[i] == ")") {
+//       secondnum = i - 1;
+//       break;
+//     }
+//     for (let z = firstnum; z <= secondnum; z++) {
+//       let newNum = mainNum[z];
+//       localNum = [...localNum, newNum];
+//     }
+//     setNum(localNum);
+//     localNum = [];
+//   }
+// }
 
 export function setData({
   mainOperator,
@@ -93,6 +143,7 @@ export function setData({
         firstoperator = j;
       } else if (mainOperator[j] == ")") {
         secondoperator = j;
+        break;
       }
     }
     for (let j = 0; j < firstoperator; j++) {
@@ -113,8 +164,11 @@ export function setData({
         firstnum = j;
       } else if (mainNum[j] == ")") {
         secondnum = j;
+        break;
       }
     }
+    console.log(firstnum, secondnum);
+
     for (let j = 0; j < firstnum; j++) {
       const newNum = mainNum[j];
       localNum = [...localNum, newNum];
