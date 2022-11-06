@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import { fcall, extract, setData, change } from "./Call";
 import { CalculatorContext } from "./Context";
 import Operation from "./Operation";
-import Add from "./Operations/Add";
-import Divide from "./Operations/Divide";
-import Multiply from "./Operations/Multiply";
-import Substraction from "./Operations/Substraction";
 import SingleOperation from "./SingleOperation";
 import { call } from "./utilities/Call";
 
@@ -93,6 +89,12 @@ function CalculatorTotal({ number, oper, setTotal }) {
   //   }
   // }
 
+  const fun = () => {
+    const timeout = setTimeout(3 * 1000);
+    clearTimeout(timeout);
+    // return timeout();
+  };
+
   useEffect(() => {
     extract({
       k,
@@ -144,8 +146,7 @@ function CalculatorTotal({ number, oper, setTotal }) {
         if (result == 11) {
           continue;
         } else {
-          const timeout = setTimeout(3 * 1000);
-          return () => clearTimeout(timeout);
+          return fun();
         }
       }
     }
@@ -155,8 +156,7 @@ function CalculatorTotal({ number, oper, setTotal }) {
         if (result == 12) {
           continue;
         } else {
-          const timeout = setTimeout(3 * 1000);
-          return () => clearTimeout(timeout);
+          return fun();
         }
       }
     }
@@ -168,8 +168,7 @@ function CalculatorTotal({ number, oper, setTotal }) {
         if (result == 13) {
           continue;
         } else {
-          const timeout = setTimeout(3 * 1000);
-          return () => clearTimeout(timeout);
+          return fun();
         }
       }
     }
@@ -179,8 +178,7 @@ function CalculatorTotal({ number, oper, setTotal }) {
         if (result == 14) {
           continue;
         } else {
-          const timeout = setTimeout(3 * 1000);
-          return () => clearTimeout(timeout);
+          return fun();
         }
       }
     }
